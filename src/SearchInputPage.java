@@ -1,13 +1,12 @@
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
@@ -17,7 +16,6 @@ import org.eclipse.wb.swt.SWTResourceManager;
 import com.opencsv.CSVWriter;
 
 import Database.DatabaseConnection;
-import Database.NotesEntry;
 
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -39,7 +37,7 @@ public class SearchInputPage {
 	private Label lblNewToSearch;
 	private Button button;
 	private DatabaseConnection dc;
-
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -134,11 +132,20 @@ public class SearchInputPage {
 				String plan = PlanBox.getText().trim();
 				String date = RecordDate_box.getText().trim();
 				String vet = VetBox.getText().trim();
+				
+				// parent component of the dialog
+				FileDialog fd = new FileDialog(shlClinicalRecordsSearch, SWT.SAVE);
+		        fd.setText("Save");
+		        fd.setFilterPath("C:/");
+		        String[] filterExt = { "*.csv"};
+		        fd.setFilterExtensions(filterExt);
+		        String selected = fd.open();
+		        System.out.println(selected);
 				try {
 					//ArrayList<NotesEntry> searchResults = 
 							//dc.search(accessNum, name, species, vet, date, 
 								//	hist, exam, assess, plan, status);
-					CSVWriter csvWriter = new CSVWriter(new FileWriter("yourfile.csv"), ',');
+					CSVWriter csvWriter = new CSVWriter(new FileWriter(selected), ',');
 					ResultSet myResultSet = dc.search(accessNum, name, species, vet, date, 
 							hist, exam, assess, plan, status);
 					csvWriter.writeAll(myResultSet, true);
