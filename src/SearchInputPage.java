@@ -1,10 +1,17 @@
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+import Database.NotesEntry;
+
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -109,7 +116,11 @@ public class SearchInputPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// ericas part that calls the search
-				// shaun's part load new window
+				ArrayList<NotesEntry> ne = null;
+				// shaun's part 
+				//- load new window taking ArrayList<NotesEntry> as a param
+				//eg AddNotesPage window = new AddNotesPage();
+				// window.open();
 				
 			}
 		});

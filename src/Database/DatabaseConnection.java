@@ -69,16 +69,16 @@ public class DatabaseConnection {
 		
 	}
 	
-	public ResultSet executeSQL(String sqlString){
-		ResultSet rs = null;
+	public ArrayList<NotesEntry> executeSQL(String sqlString){
+		ArrayList<NotesEntry> ne= null;
 		try {
 			Statement stmt = conn.createStatement();
-			rs = stmt.executeQuery(sqlString);
-			
+			ResultSet rs = stmt.executeQuery(sqlString);
+			ne = NotesEntry.buildFromRS(rs);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return rs;
+		return ne;
 	}
 	
 	public void closeConnection(){

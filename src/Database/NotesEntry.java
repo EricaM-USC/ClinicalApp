@@ -119,6 +119,9 @@ primary key (accessionNumber, NoteDate, NoteTime));
 	    	 String d = rs.getString("date"); 
 	    	 String t = rs.getString("time"); 
 	    	 String v = rs.getString("vet"); 
+	    	 String species = rs.getString("species"); 
+	    	 String status = rs.getString("status"); 
+	    	 
 	    	 String h = rs.getString("history"); 
 	    	 String ex = rs.getString("examination"); 
 	    	 String as = rs.getString("assessment"); 

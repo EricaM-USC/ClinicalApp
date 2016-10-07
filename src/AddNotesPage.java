@@ -33,6 +33,7 @@ public class AddNotesPage {
 	private DatabaseConnection dc;
 	private Text vetname_Box;
 	private Combo vet_combo;
+	private Combo statusCombo;
 	private Text Species_box;
 
 	/**
@@ -95,7 +96,7 @@ public class AddNotesPage {
 				String plan = examination_box.getText();
 				String vet = vet_combo.getText();
 				String species = Species_box.getText();
-				String status = 
+				String status = statusCombo.getText();
 				double bodyWeight = 0.0;
 				int respiratory = 0;
 				
@@ -208,7 +209,7 @@ public class AddNotesPage {
 		Species_box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		Species_box.setBounds(125, 60, 84, 19);
 		
-		Combo statusCombo = new Combo(shlAddClinicalNotes, SWT.NONE);
+		statusCombo = new Combo(shlAddClinicalNotes, SWT.NONE);
 		statusCombo.setBounds(296, 60, 130, 22);
 		statusCombo.setItems(dc.getStatus());
 		
