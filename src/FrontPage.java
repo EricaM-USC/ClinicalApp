@@ -7,18 +7,23 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import Database.DatabaseConnection;
+
 public class FrontPage {
 
+	private static DatabaseConnection dc;
+	
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		dc = new DatabaseConnection();
 		Display display = Display.getDefault();
 		Shell shlClinicalNotesSystem = new Shell();
 		shlClinicalNotesSystem.setSize(450, 300);
 		shlClinicalNotesSystem.setText("Clinical Notes System");
-		
+		DatabaseConnection dc = new DatabaseConnection();
 		Button NewNotesButton = new Button(shlClinicalNotesSystem, SWT.NONE);
 		NewNotesButton.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -26,7 +31,7 @@ public class FrontPage {
 				try {
 					
 					AddNotesPage window = new AddNotesPage();
-					window.open();
+					window.open(dc);
 					
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -42,7 +47,7 @@ public class FrontPage {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					SearchInputPage window = new SearchInputPage();
-					window.open();
+					window.open(dc);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}

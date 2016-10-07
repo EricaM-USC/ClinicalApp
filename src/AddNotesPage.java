@@ -55,8 +55,8 @@ public class AddNotesPage {
 	 * Open the window.
 	 * @wbp.parser.entryPoint
 	 */
-	public void open() {
-		dc = new DatabaseConnection();
+	public void open(DatabaseConnection dc) {
+		this.dc = dc;
 		Display display = Display.getDefault();
 		createContents();
 		shlAddClinicalNotes.open();
@@ -111,7 +111,9 @@ public class AddNotesPage {
 				} catch (NumberFormatException e1)  {
 					e1.printStackTrace();
 				}
-				NotesEntry ne = new NotesEntry(accession, name, strDate, time, vet, history, examination, assessment, plan, "initial", bodyWeight, respiratory);
+				NotesEntry ne = new NotesEntry(accession, name, species, strDate, 
+						time, vet, history, examination, assessment, plan, "initial", 
+						bodyWeight, respiratory, status);
 //				history_text_box.setText("Test");
 				dc.insertNotesEntry(ne);
 				

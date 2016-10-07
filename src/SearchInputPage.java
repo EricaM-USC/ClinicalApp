@@ -2,7 +2,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
@@ -10,6 +14,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import com.opencsv.CSVWriter;
+
+import Database.DatabaseConnection;
 import Database.NotesEntry;
 
 import org.eclipse.swt.widgets.Control;
@@ -31,6 +38,7 @@ public class SearchInputPage {
 	private Label lblVet;
 	private Label lblNewToSearch;
 	private Button button;
+	private DatabaseConnection dc;
 
 	/**
 	 * Launch the application.
@@ -49,7 +57,8 @@ public class SearchInputPage {
 	 * Open the window.
 	 * @wbp.parser.entryPoint
 	 */
-	public void open() {
+	public void open(DatabaseConnection dc) {
+		this.dc = dc;
 		Display display = Display.getDefault();
 		createContents();
 		shlClinicalRecordsSearch.open();
@@ -115,13 +124,38 @@ public class SearchInputPage {
 		btnExportTocsv.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// ericas part that calls the search
-				ArrayList<NotesEntry> ne = null;
+				String accessNum = AccessNumber_box.getText().trim();
+				String name="";
+				String species = "";
+				String status = "";
+				String hist = History_Box.getText().trim();
+				String exam = Examination_box.getText().trim();
+				String assess = Assessment_Box.getText().trim();
+				String plan = PlanBox.getText().trim();
+				String date = RecordDate_box.getText().trim();
+				String vet = VetBox.getText().trim();
+				try {
+					//ArrayList<NotesEntry> searchResults = 
+							//dc.search(accessNum, name, species, vet, date, 
+								//	hist, exam, assess, plan, status);
+					CSVWriter csvWriter = new CSVWriter(new FileWriter("yourfile.csv"), ',');
+					ResultSet myResultSet = dc.search(accessNum, name, species, vet, date, 
+							hist, exam, assess, plan, status);
+					csvWriter.writeAll(myResultSet, true);
+					csvWriter.close();
+				} catch (IOException ioe){
+					ioe.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+				
 				// shaun's part 
 				//- load new window taking ArrayList<NotesEntry> as a param
 				//eg AddNotesPage window = new AddNotesPage();
 				// window.open();
-				
 			}
 		});
 		btnExportTocsv.setBounds(150, 331, 124, 28);
@@ -157,6 +191,6 @@ public class SearchInputPage {
 		button.setText("Cancel");
 		button.setBounds(393, 331, 94, 28);
 		shlClinicalRecordsSearch.setTabList(new Control[]{AccessNumber_box, VetBox, History_Box, Examination_box, Assessment_Box, PlanBox, RecordDate_box, btnExportTocsv, btnPrintToPdf});
-
+	
 	}
 }
