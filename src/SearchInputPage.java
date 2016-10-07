@@ -105,6 +105,14 @@ public class SearchInputPage {
 		lblRecordDate.setText("Record Date");
 		
 		Button btnExportTocsv = new Button(shlClinicalRecordsSearch, SWT.NONE);
+		btnExportTocsv.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// ericas part that calls the search
+				// shaun's part load new window
+				
+			}
+		});
 		btnExportTocsv.setBounds(150, 331, 124, 28);
 		btnExportTocsv.setText("Export to Excel");
 		

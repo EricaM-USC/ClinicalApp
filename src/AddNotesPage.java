@@ -95,7 +95,7 @@ public class AddNotesPage {
 				String plan = examination_box.getText();
 				String vet = vet_combo.getText();
 				String species = Species_box.getText();
-				
+				String status = 
 				double bodyWeight = 0.0;
 				int respiratory = 0;
 				
