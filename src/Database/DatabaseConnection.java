@@ -60,13 +60,13 @@ public class DatabaseConnection {
 		    pstmt.setDouble(12, ne.getBodyWeight());
 		    pstmt.setInt(13, ne.getResp());
 		    pstmt.setString(14, ne.getAnimalStatus());  
-		    success = pstmt.execute();
-		      
+		    pstmt.execute();
+		    return true;  
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
+			return false;
 		}
-		return success;
 		
 	}
 	
@@ -78,16 +78,12 @@ public class DatabaseConnection {
 		}
 	}
 	
-	//public ArrayList<NotesEntry> search(String accessNum, String name, String species,
-		//	String vet, String date, String hist, String exam, 
-			//String assess, String plan, String status){
+	
 		public ResultSet search(String accessNum, String name, String species,
 				String vet, String date, String hist, String exam, 
 				String assess, String plan, String status){
 		
-		//ArrayList<NotesEntry> searchResults = new ArrayList<NotesEntry>();
 		ResultSet searchResults = null;
-		// ericas part that calls the search
 		String query = "SELECT * FROM vetNotes";
 		String whereString = " WHERE ";
 		String joinString = "";
@@ -161,11 +157,8 @@ public class DatabaseConnection {
 				pstmt.setString(counter,"%"+ s + "%");
 				counter++;
 			}
-			//ResultSet rs = pstmt.executeQuery();
-			//searchResults = NotesEntry.buildFromRS(rs);
 			searchResults = pstmt.executeQuery();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return searchResults;

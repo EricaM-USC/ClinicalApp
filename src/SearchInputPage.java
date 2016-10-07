@@ -7,15 +7,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import com.opencsv.CSVWriter;
 
 import Database.DatabaseConnection;
+import Database.NotesEntry;
 
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -37,6 +40,13 @@ public class SearchInputPage {
 	private Label lblNewToSearch;
 	private Button button;
 	private DatabaseConnection dc;
+	private Text animalName_Box;
+	private Label lblAnimalName;
+	private Text species_Box;
+	private Label lblSpecies;
+	private Label lblStatus;
+	private Text status_Box;
+	private Button btnViewResults;
 	
 	/**
 	 * Launch the application.
@@ -73,49 +83,49 @@ public class SearchInputPage {
 	 */
 	protected void createContents() {
 		shlClinicalRecordsSearch = new Shell();
-		shlClinicalRecordsSearch.setSize(497, 391);
+		shlClinicalRecordsSearch.setSize(504, 479);
 		shlClinicalRecordsSearch.setText("Clinical Records Search");
 		
 		AccessNumber_box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
-		AccessNumber_box.setBounds(130, 124, 286, 19);
+		AccessNumber_box.setBounds(140, 122, 136, 19);
 		
 		History_Box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
-		History_Box.setBounds(130, 178, 286, 19);
+		History_Box.setBounds(140, 247, 136, 19);
 		
 		Examination_box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
-		Examination_box.setBounds(130, 206, 286, 19);
+		Examination_box.setBounds(140, 272, 136, 19);
 		
 		Assessment_Box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
-		Assessment_Box.setBounds(130, 231, 286, 19);
+		Assessment_Box.setBounds(140, 297, 136, 19);
 		
 		PlanBox = new Text(shlClinicalRecordsSearch, SWT.BORDER);
-		PlanBox.setBounds(130, 256, 286, 19);
+		PlanBox.setBounds(140, 322, 136, 19);
 		
 		Label lblAccessionNumber = new Label(shlClinicalRecordsSearch, SWT.NONE);
-		lblAccessionNumber.setBounds(10, 129, 114, 14);
+		lblAccessionNumber.setBounds(20, 127, 113, 14);
 		lblAccessionNumber.setText("Accession Number");
 		
 		Label lblHistory = new Label(shlClinicalRecordsSearch, SWT.NONE);
-		lblHistory.setBounds(10, 181, 59, 14);
+		lblHistory.setBounds(86, 252, 47, 14);
 		lblHistory.setText("History");
 		
 		Label lblExamination = new Label(shlClinicalRecordsSearch, SWT.NONE);
-		lblExamination.setBounds(10, 209, 82, 14);
+		lblExamination.setBounds(56, 277, 77, 14);
 		lblExamination.setText("Examination");
 		
 		Label lblAssessment = new Label(shlClinicalRecordsSearch, SWT.NONE);
-		lblAssessment.setBounds(10, 234, 82, 14);
+		lblAssessment.setBounds(56, 302, 77, 14);
 		lblAssessment.setText("Assessment");
 		
 		Label lblPlan = new Label(shlClinicalRecordsSearch, SWT.NONE);
-		lblPlan.setBounds(10, 259, 59, 14);
+		lblPlan.setBounds(97, 327, 36, 14);
 		lblPlan.setText("Plan");
 		
 		RecordDate_box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
-		RecordDate_box.setBounds(130, 281, 286, 19);
+		RecordDate_box.setBounds(140, 347, 136, 19);
 		
 		Label lblRecordDate = new Label(shlClinicalRecordsSearch, SWT.NONE);
-		lblRecordDate.setBounds(10, 279, 82, 14);
+		lblRecordDate.setBounds(56, 352, 77, 14);
 		lblRecordDate.setText("Record Date");
 		
 		Button btnExportTocsv = new Button(shlClinicalRecordsSearch, SWT.NONE);
@@ -123,9 +133,9 @@ public class SearchInputPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String accessNum = AccessNumber_box.getText().trim();
-				String name="";
-				String species = "";
-				String status = "";
+				String name= animalName_Box.getText().trim();
+				String species = species_Box.getText().trim();
+				String status = status_Box.getText().trim();
 				String hist = History_Box.getText().trim();
 				String exam = Examination_box.getText().trim();
 				String assess = Assessment_Box.getText().trim();
@@ -133,7 +143,7 @@ public class SearchInputPage {
 				String date = RecordDate_box.getText().trim();
 				String vet = VetBox.getText().trim();
 				
-				// parent component of the dialog
+				// Save dialog
 				FileDialog fd = new FileDialog(shlClinicalRecordsSearch, SWT.SAVE);
 		        fd.setText("Save");
 		        fd.setFilterPath("C:/");
@@ -142,34 +152,32 @@ public class SearchInputPage {
 		        String selected = fd.open();
 		        System.out.println(selected);
 				try {
-					//ArrayList<NotesEntry> searchResults = 
-							//dc.search(accessNum, name, species, vet, date, 
-								//	hist, exam, assess, plan, status);
 					CSVWriter csvWriter = new CSVWriter(new FileWriter(selected), ',');
+					// Run the query in the connection class and get all the results.
 					ResultSet myResultSet = dc.search(accessNum, name, species, vet, date, 
 							hist, exam, assess, plan, status);
 					csvWriter.writeAll(myResultSet, true);
 					csvWriter.close();
+					
 				} catch (IOException ioe){
 					ioe.printStackTrace();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
-				
-				// shaun's part 
-				//- load new window taking ArrayList<NotesEntry> as a param
-				//eg AddNotesPage window = new AddNotesPage();
-				// window.open();
+				// Success box
+				MessageBox messageBox = new MessageBox(shlClinicalRecordsSearch, SWT.ICON_INFORMATION | SWT.OK);
+		        
+		        messageBox.setText("Success");
+		        messageBox.setMessage("Success! Excel saved at: " + selected);
+		        messageBox.open();
+		        shlClinicalRecordsSearch.close();
 			}
 		});
-		btnExportTocsv.setBounds(150, 331, 124, 28);
+		btnExportTocsv.setBounds(150, 419, 124, 28);
 		btnExportTocsv.setText("Export to Excel");
 		
 		btnPrintToPdf = new Button(shlClinicalRecordsSearch, SWT.NONE);
-		btnPrintToPdf.setBounds(280, 331, 104, 28);
+		btnPrintToPdf.setBounds(280, 419, 118, 28);
 		btnPrintToPdf.setText("Print to PDF");
 		
 		lblUseAnyOf = new Label(shlClinicalRecordsSearch, SWT.NONE);
@@ -178,10 +186,10 @@ public class SearchInputPage {
 		lblUseAnyOf.setText("Use any boxes to enter key words you wish to search for. \n\n\n\n");
 		
 		VetBox = new Text(shlClinicalRecordsSearch, SWT.BORDER);
-		VetBox.setBounds(130, 149, 286, 19);
+		VetBox.setBounds(140, 222, 136, 19);
 		
 		lblVet = new Label(shlClinicalRecordsSearch, SWT.NONE);
-		lblVet.setBounds(10, 149, 59, 14);
+		lblVet.setBounds(102, 227, 31, 14);
 		lblVet.setText("Vet");
 		
 		lblNewToSearch = new Label(shlClinicalRecordsSearch, SWT.NONE);
@@ -196,8 +204,57 @@ public class SearchInputPage {
 			}
 		});
 		button.setText("Cancel");
-		button.setBounds(393, 331, 94, 28);
-		shlClinicalRecordsSearch.setTabList(new Control[]{AccessNumber_box, VetBox, History_Box, Examination_box, Assessment_Box, PlanBox, RecordDate_box, btnExportTocsv, btnPrintToPdf});
+		button.setBounds(404, 419, 94, 28);
+		
+		animalName_Box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
+		animalName_Box.setBounds(140, 147, 136, 19);
+		
+		lblAnimalName = new Label(shlClinicalRecordsSearch, SWT.NONE);
+		lblAnimalName.setBounds(51, 152, 82, 14);
+		lblAnimalName.setText("Animal Name");
+		
+		species_Box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
+		species_Box.setBounds(140, 172, 136, 19);
+		
+		lblSpecies = new Label(shlClinicalRecordsSearch, SWT.NONE);
+		lblSpecies.setBounds(77, 177, 56, 14);
+		lblSpecies.setText("Species");
+		
+		lblStatus = new Label(shlClinicalRecordsSearch, SWT.NONE);
+		lblStatus.setBounds(86, 202, 47, 14);
+		lblStatus.setText("Status");
+		
+		status_Box = new Text(shlClinicalRecordsSearch, SWT.BORDER);
+		status_Box.setBounds(139, 197, 137, 19);
+		
+		btnViewResults = new Button(shlClinicalRecordsSearch, SWT.NONE);
+		btnViewResults.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// Shaun's part 
+				String accessNum = AccessNumber_box.getText().trim();
+				String name= animalName_Box.getText().trim();
+				String species = species_Box.getText().trim();
+				String status = status_Box.getText().trim();
+				String hist = History_Box.getText().trim();
+				String exam = Examination_box.getText().trim();
+				String assess = Assessment_Box.getText().trim();
+				String plan = PlanBox.getText().trim();
+				String date = RecordDate_box.getText().trim();
+				String vet = VetBox.getText().trim();
+				
+				ResultSet searchResults = dc.search(accessNum, name, species, vet, date, 
+							hist, exam, assess, plan, status);
+				ArrayList<NotesEntry> notesEntriesToView = NotesEntry.buildFromRS(searchResults);
+				
+				// Got you started 
+				// - need to open a new window with whatever control you want (a rich text box gives you formatting btw)
+				// with the data that is in that result set :-)
+			}
+		});
+		btnViewResults.setBounds(20, 419, 124, 28);
+		btnViewResults.setText("View Results");
+		shlClinicalRecordsSearch.setTabList(new Control[]{AccessNumber_box, animalName_Box, species_Box, status_Box, VetBox, History_Box, Examination_box, Assessment_Box, PlanBox, RecordDate_box, btnExportTocsv, btnPrintToPdf});
 	
 	}
 }

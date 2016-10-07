@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -31,7 +32,6 @@ public class AddNotesPage {
 	private Text bodyweight_box;
 	private Text respiratory_box;
 	private DatabaseConnection dc;
-	private Text vetname_Box;
 	private Combo vet_combo;
 	private Combo statusCombo;
 	private Text Species_box;
@@ -115,8 +115,22 @@ public class AddNotesPage {
 						time, vet, history, examination, assessment, plan, "initial", 
 						bodyWeight, respiratory, status);
 //				history_text_box.setText("Test");
-				dc.insertNotesEntry(ne);
-				
+				boolean success = dc.insertNotesEntry(ne);
+				// Success box
+				if (success) {
+					MessageBox messageBox = new MessageBox(shlAddClinicalNotes, SWT.ICON_INFORMATION | SWT.OK);
+			        
+			        messageBox.setText("Success");
+			        messageBox.setMessage("Success! Entry added to database");
+			        messageBox.open();
+			        shlAddClinicalNotes.close();
+				} else {
+					MessageBox messageBox = new MessageBox(shlAddClinicalNotes, SWT.ICON_WARNING | SWT.OK);
+			        
+			        messageBox.setText("Error");
+			        messageBox.setMessage("An error occurred and the entry was not created.");
+			        messageBox.open();
+				}
 			}
 		});
 		btnNew.setBounds(250, 447, 118, 28);
