@@ -18,6 +18,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Combo;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class AddNotesPage {
 
@@ -73,6 +74,7 @@ public class AddNotesPage {
 	 */
 	protected void createContents() {
 		shlAddClinicalNotes = new Shell();
+		shlAddClinicalNotes.setBackground(SWTResourceManager.getColor(0, 128, 128));
 		shlAddClinicalNotes.setSize(478, 497);
 		shlAddClinicalNotes.setText("Add Clinical Notes");
 		
@@ -80,6 +82,8 @@ public class AddNotesPage {
 		accession_text_box.setBounds(125, 10, 84, 19);
 		
 		Label lblAccessionNumber = new Label(shlAddClinicalNotes, SWT.NONE);
+		lblAccessionNumber.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblAccessionNumber.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblAccessionNumber.setBounds(10, 13, 109, 28);
 		lblAccessionNumber.setText("Accession Number");
 		
@@ -140,7 +144,9 @@ public class AddNotesPage {
 		name_text_box.setBounds(125, 35, 84, 19);
 		
 		Label lblNewLabel = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblNewLabel.setBounds(10, 38, 59, 14);
+		lblNewLabel.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblNewLabel.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblNewLabel.setBounds(60, 38, 59, 37);
 		lblNewLabel.setText("Name");
 		
 		date_box = new Text(shlAddClinicalNotes, SWT.BORDER);
@@ -152,26 +158,34 @@ public class AddNotesPage {
 		date_box.setText(todaysDate);
 		
 		Label lblNewLabel_1 = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblNewLabel_1.setBounds(231, 38, 59, 14);
+		lblNewLabel_1.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblNewLabel_1.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblNewLabel_1.setBounds(250, 38, 40, 28);
 		lblNewLabel_1.setText("Date");
 		
 		Label lblNewLabel_2 = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblNewLabel_2.setBounds(10, 81, 59, 14);
+		lblNewLabel_2.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblNewLabel_2.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblNewLabel_2.setBounds(10, 81, 59, 28);
 		lblNewLabel_2.setText("History");
 		
 		history_text_box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		history_text_box.setBounds(10, 101, 429, 46);
 		
 		Label lblExamination = new Label(shlAddClinicalNotes, SWT.NONE);
+		lblExamination.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblExamination.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblExamination.setText("Examination");
-		lblExamination.setBounds(10, 153, 75, 14);
+		lblExamination.setBounds(10, 153, 75, 46);
 		
 		examination_box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		examination_box.setBounds(10, 173, 429, 52);
 		
 		Label lblAssessment = new Label(shlAddClinicalNotes, SWT.NONE);
+		lblAssessment.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblAssessment.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblAssessment.setText("Assessment");
-		lblAssessment.setBounds(10, 231, 87, 14);
+		lblAssessment.setBounds(10, 231, 87, 32);
 		
 		assessment_box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		assessment_box.setBounds(10, 251, 429, 59);
@@ -187,28 +201,36 @@ public class AddNotesPage {
 		btnCancel.setText("Cancel");
 		
 		Label lblPlan = new Label(shlAddClinicalNotes, SWT.NONE);
+		lblPlan.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblPlan.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblPlan.setText("Plan");
-		lblPlan.setBounds(10, 316, 87, 14);
+		lblPlan.setBounds(10, 316, 87, 28);
 		
 		plan_text_box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		plan_text_box.setBounds(10, 336, 429, 59);
 		
 		Label lblNewLabel_3 = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblNewLabel_3.setBounds(10, 411, 75, 14);
+		lblNewLabel_3.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblNewLabel_3.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblNewLabel_3.setBounds(10, 411, 87, 30);
 		lblNewLabel_3.setText("Body Weight:");
 		
 		bodyweight_box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		bodyweight_box.setBounds(91, 406, 84, 19);
 		
 		Label lblNewLabel_4 = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblNewLabel_4.setBounds(250, 409, 109, 14);
+		lblNewLabel_4.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblNewLabel_4.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblNewLabel_4.setBounds(250, 409, 109, 32);
 		lblNewLabel_4.setText("Respiratory Rate:");
 		
 		respiratory_box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		respiratory_box.setBounds(375, 406, 64, 19);
 		
 		Label lblVet = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblVet.setBounds(231, 10, 59, 14);
+		lblVet.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblVet.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblVet.setBounds(250, 10, 40, 19);
 		lblVet.setText("Vet");
 		
 		//vetname_Box = new Text(shlAddClinicalNotes, SWT.BORDER);
@@ -219,7 +241,9 @@ public class AddNotesPage {
 		vet_combo.setItems(dc.getVets());
 		
 		Label lblSpecies = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblSpecies.setBounds(10, 61, 59, 14);
+		lblSpecies.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblSpecies.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblSpecies.setBounds(60, 61, 59, 34);
 		lblSpecies.setText("Species");
 		
 		Species_box = new Text(shlAddClinicalNotes, SWT.BORDER);
@@ -230,7 +254,9 @@ public class AddNotesPage {
 		statusCombo.setItems(dc.getStatus());
 		
 		Label lblNewLabel_5 = new Label(shlAddClinicalNotes, SWT.NONE);
-		lblNewLabel_5.setBounds(231, 61, 59, 14);
+		lblNewLabel_5.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
+		lblNewLabel_5.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblNewLabel_5.setBounds(250, 61, 59, 34);
 		lblNewLabel_5.setText("Status");
 		shlAddClinicalNotes.setTabList(new Control[]{accession_text_box, vet_combo, name_text_box, date_box, history_text_box, examination_box, assessment_box, plan_text_box, bodyweight_box, respiratory_box, btnNew, btnCancel});
 
