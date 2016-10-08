@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 import Database.DatabaseConnection;
+import org.eclipse.swt.widgets.Canvas;
 
 public class FrontPage {
 
@@ -21,7 +22,8 @@ public class FrontPage {
 		dc = new DatabaseConnection();
 		Display display = Display.getDefault();
 		Shell shlClinicalNotesSystem = new Shell();
-		shlClinicalNotesSystem.setSize(450, 300);
+		shlClinicalNotesSystem.setBackground(SWTResourceManager.getColor(0, 128, 128));
+		shlClinicalNotesSystem.setSize(478, 442);
 		shlClinicalNotesSystem.setText("Clinical Notes System");
 		DatabaseConnection dc = new DatabaseConnection();
 		Button NewNotesButton = new Button(shlClinicalNotesSystem, SWT.NONE);
@@ -38,7 +40,7 @@ public class FrontPage {
 				}
 			}
 		});
-		NewNotesButton.setBounds(51, 154, 150, 35);
+		NewNotesButton.setBounds(69, 309, 150, 35);
 		NewNotesButton.setText("Add New Entry");
 		
 		Button btnNewButton = new Button(shlClinicalNotesSystem, SWT.NONE);
@@ -53,14 +55,15 @@ public class FrontPage {
 				}
 			}
 		});
-		btnNewButton.setBounds(247, 154, 150, 35);
+		btnNewButton.setBounds(265, 309, 150, 35);
 		btnNewButton.setText("Search");
 		
 		Label lblAzwhuscClinicalVet = new Label(shlClinicalNotesSystem, SWT.NONE);
+		lblAzwhuscClinicalVet.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblAzwhuscClinicalVet.setFont(SWTResourceManager.getFont("Apple SD Gothic Neo", 24, SWT.NORMAL));
 		lblAzwhuscClinicalVet.setAlignment(SWT.CENTER);
-		lblAzwhuscClinicalVet.setBounds(29, 59, 396, 46);
-		lblAzwhuscClinicalVet.setText("AZWH-USC Clinical Vet Notes System");
+		lblAzwhuscClinicalVet.setBounds(43, 245, 396, 46);
+		lblAzwhuscClinicalVet.setText("Clinical Vet Notes System");
 		
 		Button btnClose = new Button(shlClinicalNotesSystem, SWT.NONE);
 		btnClose.addSelectionListener(new SelectionAdapter() {
@@ -70,7 +73,11 @@ public class FrontPage {
 			}
 		});
 		btnClose.setText("Close");
-		btnClose.setBounds(149, 220, 150, 35);
+		btnClose.setBounds(167, 375, 150, 35);
+		
+		Label lblNewLabel = new Label(shlClinicalNotesSystem, SWT.NONE);
+		lblNewLabel.setImage(SWTResourceManager.getImage("./JointUSC-AZWH.png"));
+		lblNewLabel.setBounds(23, 29, 430, 210);
 
 		shlClinicalNotesSystem.open();
 		shlClinicalNotesSystem.layout();
