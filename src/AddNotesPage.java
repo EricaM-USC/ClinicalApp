@@ -75,16 +75,16 @@ public class AddNotesPage {
 	protected void createContents() {
 		shlAddClinicalNotes = new Shell();
 		shlAddClinicalNotes.setBackground(SWTResourceManager.getColor(0, 128, 128));
-		shlAddClinicalNotes.setSize(478, 497);
+		shlAddClinicalNotes.setSize(478, 557);
 		shlAddClinicalNotes.setText("Add Clinical Notes");
 		
 		accession_text_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		accession_text_box.setBounds(125, 10, 84, 19);
+		accession_text_box.setBounds(125, 60, 84, 19);
 		
 		Label lblAccessionNumber = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblAccessionNumber.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblAccessionNumber.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblAccessionNumber.setBounds(10, 13, 109, 28);
+		lblAccessionNumber.setBounds(10, 63, 109, 28);
 		lblAccessionNumber.setText("Accession Number");
 		
 		Button btnNew = new Button(shlAddClinicalNotes, SWT.NONE);
@@ -137,20 +137,20 @@ public class AddNotesPage {
 				}
 			}
 		});
-		btnNew.setBounds(250, 447, 118, 28);
+		btnNew.setBounds(250, 497, 118, 28);
 		btnNew.setText("Create Record");
 		
 		name_text_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		name_text_box.setBounds(125, 35, 84, 19);
+		name_text_box.setBounds(125, 85, 84, 19);
 		
 		Label lblNewLabel = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblNewLabel.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblNewLabel.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNewLabel.setBounds(60, 38, 59, 37);
+		lblNewLabel.setBounds(60, 88, 59, 37);
 		lblNewLabel.setText("Name");
 		
 		date_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		date_box.setBounds(296, 35, 99, 19);
+		date_box.setBounds(296, 85, 99, 19);
 		//set date
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -160,35 +160,35 @@ public class AddNotesPage {
 		Label lblNewLabel_1 = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblNewLabel_1.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblNewLabel_1.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNewLabel_1.setBounds(250, 38, 40, 28);
+		lblNewLabel_1.setBounds(250, 88, 40, 28);
 		lblNewLabel_1.setText("Date");
 		
 		Label lblNewLabel_2 = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblNewLabel_2.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblNewLabel_2.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNewLabel_2.setBounds(10, 81, 59, 28);
+		lblNewLabel_2.setBounds(10, 131, 59, 28);
 		lblNewLabel_2.setText("History");
 		
 		history_text_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		history_text_box.setBounds(10, 101, 429, 46);
+		history_text_box.setBounds(10, 151, 429, 46);
 		
 		Label lblExamination = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblExamination.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblExamination.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblExamination.setText("Examination");
-		lblExamination.setBounds(10, 153, 75, 46);
+		lblExamination.setBounds(10, 203, 75, 46);
 		
 		examination_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		examination_box.setBounds(10, 173, 429, 52);
+		examination_box.setBounds(10, 223, 429, 52);
 		
 		Label lblAssessment = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblAssessment.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblAssessment.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblAssessment.setText("Assessment");
-		lblAssessment.setBounds(10, 231, 87, 32);
+		lblAssessment.setBounds(10, 281, 87, 32);
 		
 		assessment_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		assessment_box.setBounds(10, 251, 429, 59);
+		assessment_box.setBounds(10, 301, 429, 59);
 		
 		Button btnCancel = new Button(shlAddClinicalNotes, SWT.NONE);
 		btnCancel.addSelectionListener(new SelectionAdapter() {
@@ -197,67 +197,77 @@ public class AddNotesPage {
 				shlAddClinicalNotes.close();
 			}
 		});
-		btnCancel.setBounds(374, 447, 94, 28);
+		btnCancel.setBounds(374, 497, 94, 28);
 		btnCancel.setText("Cancel");
 		
 		Label lblPlan = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblPlan.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblPlan.setForeground(SWTResourceManager.getColor(255, 255, 255));
 		lblPlan.setText("Plan");
-		lblPlan.setBounds(10, 316, 87, 28);
+		lblPlan.setBounds(10, 366, 87, 28);
 		
 		plan_text_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		plan_text_box.setBounds(10, 336, 429, 59);
+		plan_text_box.setBounds(10, 386, 429, 59);
 		
 		Label lblNewLabel_3 = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblNewLabel_3.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblNewLabel_3.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNewLabel_3.setBounds(10, 411, 87, 30);
+		lblNewLabel_3.setBounds(10, 461, 87, 30);
 		lblNewLabel_3.setText("Body Weight:");
 		
 		bodyweight_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		bodyweight_box.setBounds(91, 406, 84, 19);
+		bodyweight_box.setBounds(91, 456, 84, 19);
 		
 		Label lblNewLabel_4 = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblNewLabel_4.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblNewLabel_4.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNewLabel_4.setBounds(250, 409, 109, 32);
+		lblNewLabel_4.setBounds(250, 459, 109, 32);
 		lblNewLabel_4.setText("Respiratory Rate:");
 		
 		respiratory_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		respiratory_box.setBounds(375, 406, 64, 19);
+		respiratory_box.setBounds(375, 456, 64, 19);
 		
 		Label lblVet = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblVet.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblVet.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblVet.setBounds(250, 10, 40, 19);
+		lblVet.setBounds(250, 60, 40, 19);
 		lblVet.setText("Vet");
 		
 		//vetname_Box = new Text(shlAddClinicalNotes, SWT.BORDER);
 		//vetname_Box.setBounds(296, 10, 64, 19);
 		
 		vet_combo = new Combo(shlAddClinicalNotes, SWT.NONE);
-		vet_combo.setBounds(296, 10, 130, 31);
+		vet_combo.setBounds(296, 60, 130, 31);
 		vet_combo.setItems(dc.getVets());
 		
 		Label lblSpecies = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblSpecies.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblSpecies.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblSpecies.setBounds(60, 61, 59, 34);
+		lblSpecies.setBounds(60, 111, 59, 34);
 		lblSpecies.setText("Species");
 		
 		Species_box = new Text(shlAddClinicalNotes, SWT.BORDER);
-		Species_box.setBounds(125, 60, 84, 19);
+		Species_box.setBounds(125, 110, 84, 19);
 		
 		statusCombo = new Combo(shlAddClinicalNotes, SWT.NONE);
-		statusCombo.setBounds(296, 60, 130, 22);
+		statusCombo.setBounds(296, 110, 130, 22);
 		statusCombo.setItems(dc.getStatus());
 		
 		Label lblNewLabel_5 = new Label(shlAddClinicalNotes, SWT.NONE);
 		lblNewLabel_5.setFont(SWTResourceManager.getFont(".SF NS Text", 11, SWT.BOLD));
 		lblNewLabel_5.setForeground(SWTResourceManager.getColor(255, 255, 255));
-		lblNewLabel_5.setBounds(250, 61, 59, 34);
+		lblNewLabel_5.setBounds(250, 111, 59, 34);
 		lblNewLabel_5.setText("Status");
+		
+		Label lblNewLabel_6 = new Label(shlAddClinicalNotes, SWT.NONE);
+		lblNewLabel_6.setImage(SWTResourceManager.getImage("JointUSC-AZWH-long-small.png"));
+		lblNewLabel_6.setBounds(45, 3, 213, 54);
+		
+		Label lblClinicalVetNotes = new Label(shlAddClinicalNotes, SWT.NONE);
+		lblClinicalVetNotes.setFont(SWTResourceManager.getFont(".SF NS Text", 14, SWT.BOLD));
+		lblClinicalVetNotes.setForeground(SWTResourceManager.getColor(255, 255, 255));
+		lblClinicalVetNotes.setBounds(250, 17, 189, 28);
+		lblClinicalVetNotes.setText("Clinical Vet Notes System");
 		shlAddClinicalNotes.setTabList(new Control[]{accession_text_box, vet_combo, name_text_box, date_box, history_text_box, examination_box, assessment_box, plan_text_box, bodyweight_box, respiratory_box, btnNew, btnCancel});
 
 	}

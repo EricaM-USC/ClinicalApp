@@ -76,7 +76,7 @@ public class FrontPage {
 		btnClose.setBounds(167, 375, 150, 35);
 		
 		Label lblNewLabel = new Label(shlClinicalNotesSystem, SWT.NONE);
-		lblNewLabel.setImage(SWTResourceManager.getImage("./JointUSC-AZWH.png"));
+		lblNewLabel.setImage(SWTResourceManager.getImage("JointUSC-AZWH.png"));
 		lblNewLabel.setBounds(23, 29, 430, 210);
 
 		shlClinicalNotesSystem.open();
